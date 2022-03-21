@@ -1,5 +1,5 @@
-import './appHeader.scss';
 import { Link, NavLink } from 'react-router-dom';
+import './appHeader.scss';
 
 const AppHeader = () => {
 	return (
@@ -12,16 +12,13 @@ const AppHeader = () => {
 			<nav className="app__menu">
 				<ul>
 					<li>
-						<NavLink end style={({ isActive }) => ({ color: isActive ? '#9f0013' : 'inherit' })} to="/">
+						<NavLink exact activeStyle={{ color: '#9f0013' }} to="/">
 							Characters
 						</NavLink>
 					</li>
 					/
 					<li>
-						<NavLink
-							style={({ isActive }) => ({ color: isActive ? '#9f0013' : 'inherit' })}
-							to="/comics"
-						>
+						<NavLink activeStyle={{ color: '#9f0013' }} to="/comics">
 							Comics
 						</NavLink>
 					</li>
