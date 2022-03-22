@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -69,7 +69,8 @@ const CharList = (props) => {
 		itemRefs.current[id].focus();
 	};
 
-	function renderItem(arr) {
+	const renderItem = (arr) => {
+		console.log('render');
 		const items = arr.map((item, i) => {
 			let imgStyle = { objectFit: 'cover' };
 			if (
@@ -109,11 +110,15 @@ const CharList = (props) => {
 				<TransitionGroup component={null}>{items}</TransitionGroup>
 			</ul>
 		);
-	}
+	};
+
+	const elements = useMemo(() => {
+		return setContent(process, () => renderItem(charList), newItemLoading);
+	}, [process]);
 
 	return (
 		<div className="char__list">
-			{setContent(process, () => renderItem(charList), newItemLoading)}
+			{elements}
 
 			<button
 				className="button button__main button__long"
